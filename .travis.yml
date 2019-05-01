@@ -8,12 +8,12 @@ before_install:
 script:
   - docker run dockenigma/multi-docker npm run test-coverage
 after_success: 
-  - docker build -t dockenigma/multi-client ./client
-  - docker build -t dockenigma/multi-nginx ./nginx
-  - docker build -t dockenigma/multi-server ./server
-  - docker build -t dockenigma/multi-worker ./worker
+  - docker build -t dockenigma/multi-client:latest ./client
+  - docker build -t dockenigma/multi-nginx:latest ./nginx
+  - docker build -t dockenigma/multi-server:latest ./server
+  - docker build -t dockenigma/multi-worker:latest ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push dockenigma/multi-client 
-  - docker push dockenigma/multi-nginx
-  - docker push dockenigma/multi-server
-  - docker push dockenigma/multi-worker
+  - docker push dockenigma/multi-client:latest
+  - docker push dockenigma/multi-nginx:latest
+  - docker push dockenigma/multi-server:latest
+  - docker push dockenigma/multi-worker:latest
