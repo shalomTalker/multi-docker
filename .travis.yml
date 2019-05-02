@@ -17,3 +17,15 @@ after_success:
   - docker push dockenigma/multi-nginx:latest
   - docker push dockenigma/multi-server:latest
   - docker push dockenigma/multi-worker:latest
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: " multi-docker"
+  env:  "Multi-docker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-444230913747"
+  bucket_path : "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
